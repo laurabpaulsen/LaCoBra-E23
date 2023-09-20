@@ -1,8 +1,15 @@
-# create env uisng venv
-python -m venv env
+#!/bin/bash
 
-# activate env
-source ./env/bin/activate
+# Get the directory of the Bash script
+scriptDir=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")
 
-# install requirements
-python -m pip install -r requirements.txt
+# Create a virtual environment in the same directory as the script
+python -m venv "$scriptDir/env"
+
+# Activate the virtual environment
+source "$scriptDir/env/bin/activate"
+
+# Install requirements from the same directory as the script
+python -m pip install -r "$scriptDir/requirements.txt"
+
+echo "Done!"
